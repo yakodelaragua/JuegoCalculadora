@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Calculadora</title>
+        <style>
+            body{
+                background-color: rgb(245, 232, 215);
+                width: 600px
+            }
+           
+        </style>
+    </head>
+    <body>
+        
+        <h1>¿Sabrías calcular la solución?</h1>
+        <h5>Introduce dos números y elige la operación</h5>
+        <p style="text-align: right;margin-right: 20px;"><img src="https://www.kasandbox.org/programming-images/avatars/avatar-team.png" alt="operaciones" style="width:200px;height:100px;float: right"></p>
+        <form onreset="reiniciar()">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="text" id="num1" name="num1"><br><br>
+            <select id="operacion">
+                <option value="+">+</option>
+                <option value="-">-</option>
+                <option value="*">*</option>
+                <option value="/">/</option>
+            </select>
+            <input type="text" id="num2" name="num2"><br>
+            <hr color="fuchsia" size="3" width="250" align="left">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="text" id="solucion" name="solucion" onchange="return comprobar()" onkeyup="return comprobar()">
+            <label for="correc" id = "correc">¿Cuál es tu respuesta?</label><br><br>
+            <input type="reset" value="Nueva operación">
+        </form>   
+        
+        <script>
+            function comprobar(){
+                var n1 = parseInt(document.getElementById("num1").value);
+                var n2 = parseInt(document.getElementById("num2").value);
+                var opS = document.getElementById("operacion").selectedIndex;
+                var op = document.getElementsByTagName("option")[opS].value;
+                var sol = parseInt(document.getElementById("solucion").value);
+                var result;
+                
+                if(op === "+"){
+                    result = n1 + n2;
+                } else if (op === "-") {
+                    result = n1 - n2;
+                } else if (op === "*") {
+                    result = n1 * n2;
+                } else if (op === "/") {
+                    result = n1 / n2;
+                } 
+                
+                if(result === sol){
+                    document.getElementById("correc").innerHTML = "Correcto";
+                    document.getElementById("correc").style.color = "#00EA2F";
+                    
+                } else {
+                    document.getElementById("correc").innerHTML = "Incorrecto";
+                    document.getElementById("correc").style.color = "red";
+                   
+                }
+            }
+            
+            function reiniciar(){
+                document.getElementById("correc").innerHTML = "¿Cuál es tu respuesta?";
+                document.getElementById("correc").style.color = "black";
+            }
+        </script> 
+    </body>
+</html>
